@@ -9,7 +9,7 @@ url = "https://discord.com/api/v8/applications/781879146053369867/commands"
 json = {
     "name": "xp",
     "type": 1,
-    "description": "Show your xp",
+    "description": "Show yourxp",
 }
 
 headers = {
