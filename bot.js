@@ -18,10 +18,6 @@ const levelArray = [{level : 0, xp : 4,}, {level : 1,xp : 5,}, {level : 2,xp : 6
 
 const COMMAND_PREFIX = '!';
 
-function filtreAntiInsult(message) {
-  
-}
-
 clientLoader.createClient(['GUILDS', 'GUILD_MESSAGES', 'GUILD_MEMBERS'])
   .then(async (client) => {
     await commandLoader.load(client);
@@ -89,7 +85,25 @@ clientLoader.createClient(['GUILDS', 'GUILD_MESSAGES', 'GUILD_MEMBERS'])
         // Ne pas tenir compte des messages envoyés par les bots
         if (message.author.bot) return;
 
+        // Filtre d'insultes 
 
+        // insultList.forEach(insultwords => {
+        //   const insultwordList = insultwords.split(" ")
+        //   const messagewordList = message.content.split(" ")
+        //   messagewordList.forEach(word =>{
+        //     if (word == insultwords[0] && insultwords[1]){
+        //       insultwordList.forEach(insult => {
+        //         if (insult != word){
+        //           return
+        //         }
+        //       })
+        //       message.content = "Non"
+        //     }
+        //     if (word == insultwords[0] && !insultwords[1]){
+        //       message.content = "Non"
+        //     }
+        //   })
+        // })
 
         const userID = message.author.id
           
