@@ -14,11 +14,10 @@ const connection = mysql.createConnection({
 
 const insultList = ['avorton', 'andouille', 'bridé', 'fell', 'dugland', 'bite', 'débougnouliser', 'bitembois', 'con comme un balai', 'empaffé', 'face de chien', 'con comme la lune', 'assimilé', 'Chinetoque', 'bulot', 'carcavel', 'glandouillou', 'abruti', 'charlot de vogue', 'croûton', 'bougnoulisation', 'connasse', 'bourricot', 'glandue', 'aller niquer sa mère', 'cacou', 'enfant de putain', 'glandeur', 'Fritz', 'conchier', 'conasse', 'complotiste', 'frisé', 'boukak', 'bête comme un cochon', 'fils de garce', 'enflure', 'empapaouté', 'épais', 'bouffon', 'aller se faire enculer', 'bâtard', 'chauffard', 'chintok', 'connard', 'con', 'fumelard', 'dago', 'bouffonne', 'charogne', 'con comme une chaise', 'bachi-bouzouk', 'chaoui', 'boudin', 'CPF', 'emmanché', 'face de pet', 'fritz', 'bounioul', 'bougnouliser', 'franco-frog', 'chinetoque', 'boucaque', 'enfant de garce', 'crouille', 'aller se faire foutre', 'fachiste', 'fripouille', 'Bougnoulie', 'duconnot', 'bête comme ses pieds', 'crouillat', 'gestapette', 'fils de bâtard', 'Bitembois', 'débile', 'chnoque', 'enculé', 'fils de ta race', 'folle', 'bourdille', 'bête comme un cygne', 'anglo-fou', 'garage à bites', 'crotté', 'enfant de salaud', 'aller se faire mettre', 'caldoche', 'étron', 'chienne', 'fiotte', 'colon', 'doryphore', 'contracibête', 'foutriquet', 'Gestapette', 'biatch', 'cheveux bleus', 'bougre', 'glandu', 'bête comme un chou', 'beauf', 'cafre', 'aller chier dans sa caisse', 'bic', 'fumier', 'bibi', 'con comme une valise', 'chien de chrétien', 'bête à pleurer', 'espingouin', 'emmerder', 'cave', 'fils de chien', 'chinetoc', 'Conchita', 'cageot', 'bougnoul', 'counifle', 'branleur', 'couille molle', 'chbeb', 'fils de pute', 'bridée', 'chiennasse', 'bique', 'espèce de', 'astèque', 'connarde', 'bouffi', 'envaselineur', 'courtaud', 'bellicole', 'dugenoux', 'FDP', 'garce', 'baraki', 'con comme une valise à poignée intérieure', 'espingoin', 'enfant de pute', 'ducon', 'empafé', 'fils de chienne', 'face de rat', 'casse-couille', 'cricri', 'conspirationniste', 'baudet', 'garage à bite', 'drouille', 'enculer', 'chier', 'bolos', 'assimilée', 'fermer sa gueule', 'emmerdeuse', 'boulet', 'brise-burnes', 'bête comme une oie', 'fouteur', 'enfant de fusil', 'con comme un manche', 'brigand', 'face de craie', 'bordille', 'casse-couilles', 'du schnoc', 'baleine', 'doxosophe', 'bicotte', 'doxosophie', 'bicot', 'bougnoule', 'aller se faire endauffer', 'glandeuse', 'bande d’abrutis', 'emmerdeur', 'gland', 'crétin', 'con comme une valise sans poignée', 'duschnock', 'con comme ses pieds', 'appareilleuse', 'chleuh', 'crevure', 'bounioule', 'enfoiré', 'crouïa', 'enculé de ta race', 'bourrer', 'gaupe', 'citrouille', 'envoyer faire foutre', 'bête', 'casse-bonbon', 'chieur', 'chagasse', 'chiabrena', 'coche', 'GDM', 'ratio']
 
-const levelArray = [{level : 0, xp : 4,}, {level : 1,xp : 5,}, {level : 2,xp : 6,}, {level : 3,xp : 7,}, {level : 4,xp : 8,}, {level : 5,xp : 9,}]
-
 const COMMAND_PREFIX = '!';
 
 clientLoader.createClient(['GUILDS', 'GUILD_MESSAGES', 'GUILD_MEMBERS'])
+
   .then(async (client) => {
     await commandLoader.load(client);
 
@@ -87,23 +86,24 @@ clientLoader.createClient(['GUILDS', 'GUILD_MESSAGES', 'GUILD_MEMBERS'])
 
         // Filtre d'insultes 
 
-        // insultList.forEach(insultwords => {
-        //   const insultwordList = insultwords.split(" ")
-        //   const messagewordList = message.content.split(" ")
-        //   messagewordList.forEach(word =>{
-        //     if (word == insultwords[0] && insultwords[1]){
-        //       insultwordList.forEach(insult => {
-        //         if (insult != word){
-        //           return
-        //         }
-        //       })
-        //       message.content = "Non"
-        //     }
-        //     if (word == insultwords[0] && !insultwords[1]){
-        //       message.content = "Non"
-        //     }
-        //   })
-        // })
+        insultList.forEach(insultwords => {
+          const insultwordList = insultwords.split(" ")
+          const messagewordList = message.content.split(" ")
+          messagewordList.forEach(word =>{
+            if (word == insultwords[0] && insultwords[1]){
+              insultwordList.forEach(insult => {
+                if (insult != word){
+                  return
+                }
+              })
+              message.delete()
+            }
+            if (word == insultwords[0] && !insultwords[1]){
+              message.delete()
+              
+            }
+          })
+        })
 
         const userID = message.author.id
           
